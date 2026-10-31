@@ -1,0 +1,17 @@
+{
+  "name": "learn-interview-prep",
+  "version": "1.0.0",
+  "description": "Master developer interviews: coding patterns, system design, behavioural questions, take-home projects, and a structured study plan",
+  "type": "module",
+  "private": true,
+  "author": "The Learning Hub",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"practice/js/test/*.test.js\"",
+    "test:py": "python -m pytest",
+    "test:all": "npm test && npm run test:py"
+  }
+}

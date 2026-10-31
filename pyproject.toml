@@ -1,0 +1,15 @@
+[project]
+name = "learn-interview-prep"
+version = "1.0.0"
+description = "Solved coding-interview patterns in Python, with tests"
+requires-python = ">=3.12"
+license = "MIT"
+
+[tool.pytest.ini_options]
+testpaths = ["practice/python/tests"]
+pythonpath = ["practice/python"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"

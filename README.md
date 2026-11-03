@@ -323,7 +323,7 @@ flowchart LR
 Interview-relevant facts:
 
 1. **Keys must be hashable and stable.** In Python use tuples, not lists, as keys. In JS, `Map` keys compare by identity for objects, so use a string key such as `` `${r},${c}` `` or an integer `r * cols + c` for grid cells.
-2. **Ordering:** Python `dict` and JS `Map` both preserve insertion order. That property is what makes the one-line LRU cache in Stage 3.12 possible.
+2. **Ordering:** Python `dict` and JS `Map` both preserve insertion order. That property is what makes the compact LRU cache in Stage 3.12 possible.
 3. **Counting:** `collections.Counter` and `map.set(k, (map.get(k) ?? 0) + 1)` are the idioms you will write dozens of times.
 4. **Space:** a hash map costs several times the memory of an array of the same data. If keys are small integers in a known range, an array of counts is faster and smaller (for example a 26-slot array for lowercase letters).
 
@@ -680,7 +680,7 @@ def min_window(s: str, t: str) -> str:
 
 **Idea:** whenever a yes/no predicate flips exactly once over an ordered space, binary search finds the flip point in $O(\log n)$ checks. The space can be array indices **or the range of possible answers**.
 
-Use one template and stop worrying about off-by-one errors: search the half-open range `[lo, hi)` for the first position where the predicate is true.
+Use one template and stop worrying about off-by-one errors: probe indices in the half-open range `[lo, hi)` for the first position where the predicate is true. Starting with `hi = len(nums)` means the answer itself can be `len(nums)` ("no element qualifies"), which is why the comment below says the answer lies in the closed range `[lo, hi]`.
 
 ```python
 # practice/python/interview_patterns/binary_search.py
@@ -1522,24 +1522,24 @@ Avoid questions answered on the careers page, and save compensation details for 
 
 ### 6.6 The 12-Week Structured Study Plan
 
-Assumes about 10 hours a week alongside a full-time job. Compress it to six weeks with 20 hours a week, or extend it if you are starting from scratch.
+Assumes about 10 hours a week alongside a full-time job. Compress it to six weeks with 20 hours a week, or extend it if you are starting from scratch. The chart uses an example start date (Monday 2 November 2026); shift the dates to your own start week.
 
 ```mermaid
 gantt
     title 12-Week Interview Preparation
     dateFormat  YYYY-MM-DD
     axisFormat  W%W
-    section Foundations
-    Big-O, arrays, hashing, two pointers      :a1, 2026-11-02, 14d
-    section Patterns
-    Windows, binary search, intervals, stacks :a2, after a1, 14d
-    Trees, graphs, heaps                      :a3, after a2, 14d
-    Backtracking and DP                       :a4, after a3, 14d
+    section Coding
+    Big-O, hashing, two pointers, windows     :a1, 2026-11-02, 21d
+    Binary search, intervals, stacks, heaps   :a2, after a1, 14d
+    Trees, graphs, backtracking, tries        :a3, after a2, 21d
+    Dynamic programming                       :a4, after a3, 14d
+    Mixed timed sets and failed-problem log   :a5, after a4, 14d
     section Design & Behavioural
-    System design fundamentals                :b1, 2026-11-30, 28d
-    Story bank and STAR practice              :b2, 2026-12-14, 28d
+    Story bank and STAR practice              :b1, 2026-11-09, 35d
+    System design rounds                      :b2, 2026-11-23, 49d
     section Simulation
-    Mock interviews and review                :c1, after a4, 28d
+    Mock coding, design and behavioural rounds :c1, 2026-11-30, 56d
 ```
 
 | Week | Coding focus (repo modules) | Design and behavioural | Weekly milestone |
